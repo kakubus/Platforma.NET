@@ -8,14 +8,14 @@ namespace Lab1._1
 {
     class SimTempSensor
     {
-        List<double> sensorValues;
+        List<double?> sensorValues;
         private double min_range;
         private double max_range;
         private double error_point;
 
         public SimTempSensor()
         {
-            sensorValues = new List<double>();
+            sensorValues = new List<double?>();
             min_range = -10.0;
             max_range = 10.0;
             error_point = -5.0;
@@ -25,7 +25,7 @@ namespace Lab1._1
         {
             if(min > max)
             {
-                sensorValues = new List<double>();
+                sensorValues = new List<double?>();
                 min_range = -10.0;
                 max_range = 10.0;
                 error_point = -5.0;
@@ -33,7 +33,7 @@ namespace Lab1._1
             }
             else
             {
-                sensorValues = new List<double>();
+                sensorValues = new List<double?>();
                 min_range = min;
                 max_range = max;
                 error_point = error;
@@ -47,16 +47,24 @@ namespace Lab1._1
             int i = 0;
             String s = "-------------------------------\nTemperature readings:";
 
-            foreach (double temp in sensorValues)
+            foreach (double? temp in sensorValues)
             {
                 i++;
-                s += String.Format("\n[{0}]:\t{1:N2} °C", i, temp);
+                if(temp == null)
+                {
+                    s += String.Format("\n[{0}]:\tnull", i);
+                }
+                else
+                {
+                    s += String.Format("\n[{0}]:\t{1:N2} °C", i, temp);
+                }
+                
             }
 
             return s;
         }
 
-        public double GenerateSingleReadings()
+        public double? GenerateSingleReadings()
         {
             // sensorValues.Clear(); nwm czy potrzebne w sumie
             var rand = new Random();
@@ -65,7 +73,8 @@ namespace Lab1._1
 
             if(temp <= error_point)
             {
-                return Convert.ToDouble(null);
+                sensorValues.Add(null);
+                return null;
             }
             else
             {
@@ -89,7 +98,7 @@ namespace Lab1._1
                 temp = rand.NextDouble() * (max_range - min_range) + min_range;
                 if (temp <= error_point)
                 {
-                    sensorValues.Add(Convert.ToDouble(null));
+                    sensorValues.Add(null);
                 }
                 else
                 {
@@ -109,7 +118,7 @@ namespace Lab1._1
             {
                 int i = 0;
                 String s = $"------------------------------ -\nShowing {x} readings:";
-                foreach (double temp in sensorValues)
+                foreach (double? temp in sensorValues)
                 {
                     i++;
                     
@@ -140,9 +149,17 @@ namespace Lab1._1
             using (StreamWriter sw = new StreamWriter("readings.txt")) //IDisposable
             {
                 string data = "";
-                foreach (double temp in sensorValues)
+                foreach (double? temp in sensorValues)
                 {
-                    data = String.Format("{0:N2}", temp);
+                    if (temp == null)
+                    {
+                        data = String.Format("null");
+                    }
+                    else
+                    {
+                        data = String.Format("{0:N2}", temp);
+                    }
+                    
                     sw.WriteLine(data);
                 }
                 

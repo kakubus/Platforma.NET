@@ -110,36 +110,29 @@ namespace Lab1._1
         public void ShowNReadings()
         {
             Console.Write("Insert a number of readings to show: ");
-            int x = Convert.ToInt32(Console.ReadLine());
-          
-            if (x > 0)
+            int x; 
+            bool success = int.TryParse(Console.ReadLine(), out x);
+            if (success)
             {
-                int i = 0;
-                String s = $"------------------------------ -\nShowing {x} readings:";
-                foreach (double? temp in sensorValues)
+                if (x > 0)
                 {
-                    i++;
-                    
-                    int converted_number;
-                    bool success = int.TryParse(Convert.ToString(temp), out converted_number); //?????? ToString()?
-
-                    if (success)
+                    int i = 0;
+                    String s = $"------------------------------ -\nShowing {x} readings:";
+                    foreach (double? temp in sensorValues)
                     {
-                        s += String.Format("\n[{0}]:\t{1:N2} °C", i, converted_number);
-                    }
-                    else
-                    {
-                        s += String.Format("\n[{0}]:\t| ({1}) not converted! | °C", i, temp);
-                    }
+                        i++;
+                        s += String.Format("\n[{0}]:\t{1:N2} °C", i, temp);
 
-                    if (i >= x) break;
+                        if (i >= x) break;
+                    }
+                    Console.WriteLine(s);
                 }
-                Console.WriteLine(s);
             }
             else
             {
                 Console.WriteLine("Wrong number!");
             }
+
         }
 
         public void SaveReadingsToFile()

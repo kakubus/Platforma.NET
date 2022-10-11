@@ -13,6 +13,8 @@ namespace Lab1._1
         private double max_range;
         private double error_point;
 
+        
+
         public SimTempSensor()
         {
             sensorValues = new List<double?>();
@@ -58,9 +60,7 @@ namespace Lab1._1
                 {
                     s += String.Format("\n[{0}]:\t{1:N2} °C", i, temp);
                 }
-                
             }
-
             return s;
         }
 
@@ -106,10 +106,10 @@ namespace Lab1._1
                 }
 
             }
-            // problem z nullem na razie nie robi nulla przy -80
+
         }
 
-        public void ShowNReadings() //cosik średnio to działa, bo nie ma listy ze stringiem. Może to podpucha od prowadzączego bo wszędzie pisze "double?"
+        public void ShowNReadings()
         {
             Console.Write("Insert a number of readings to show: ");
             int x = Convert.ToInt32(Console.ReadLine());
@@ -123,7 +123,7 @@ namespace Lab1._1
                     i++;
                     
                     int converted_number;
-                    bool success = int.TryParse(temp.ToString(), out converted_number); //?????? ToString()?
+                    bool success = int.TryParse(Convert.ToString(temp), out converted_number); //?????? ToString()?
 
                     if (success)
                     {
@@ -162,9 +162,28 @@ namespace Lab1._1
                     
                     sw.WriteLine(data);
                 }
-                
                 sw.Close();
             }
+        }
+
+        public void SerializeReadings()
+        {
+            String timestamp = string.Format("{0:yyyy-MM-dd_HH-mm-ss-fff}", DateTime.Now);
+            SerializationClass.Serialize($"{timestamp}.txt", sensorValues);
+        }
+
+        public void DeserializeReadings()
+        {
+            var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt");
+            foreach(double? temp in a)
+            {
+                sensorValues.Add(temp);
+            }
+        }
+
+        public void ClearAll()
+        {
+            sensorValues.Clear();
         }
 
 

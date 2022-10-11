@@ -165,6 +165,11 @@ namespace Lab1._1
 
         public void DeserializeReadings()
         {
+            string[] fileNames = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
+            foreach (string filename in fileNames)
+            {
+                Console.WriteLine(Path.GetFileNameWithoutExtension(filename));
+            }
             var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt");
             foreach(double? temp in a)
             {

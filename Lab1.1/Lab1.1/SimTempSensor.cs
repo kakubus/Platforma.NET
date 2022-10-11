@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
+using System.Text;
+
 
 
 namespace Lab1._1
@@ -12,8 +13,6 @@ namespace Lab1._1
         private double min_range;
         private double max_range;
         private double error_point;
-
-        
 
         public SimTempSensor()
         {
@@ -82,7 +81,6 @@ namespace Lab1._1
                 return temp;
             }
             
-            //niby jak tego nulla zwrócić? Jako null się nie da
         }
 
         public void GenerateMultipleReadings(int number)
@@ -168,7 +166,7 @@ namespace Lab1._1
 
         public void SerializeReadings()
         {
-            String timestamp = string.Format("{0:yyyy-MM-dd_HH-mm-ss-fff}", DateTime.Now);
+            String timestamp = string.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now);
             SerializationClass.Serialize($"{timestamp}.txt", sensorValues);
         }
 
@@ -181,7 +179,7 @@ namespace Lab1._1
             }
         }
 
-        public void ClearAll()
+        public void ClearAll() //do testow 
         {
             sensorValues.Clear();
         }

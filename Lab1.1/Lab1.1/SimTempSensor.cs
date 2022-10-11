@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 
 
-
+//test komentarza
 namespace Lab1._1
 {
     class SimTempSensor

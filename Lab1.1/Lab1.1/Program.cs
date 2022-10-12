@@ -12,15 +12,15 @@ namespace Lab1._1
             DS18B20.GenerateSingleReadings();
             Console.WriteLine(DS18B20.ToString());
             DS18B20.GenerateMultipleReadings(5);
-            DS18B20.SerializeReadings();
+          //  DS18B20.SerializeReadings();
             Console.WriteLine(DS18B20.ToString());
 
             DS18B20.ShowNReadings();
-            DS18B20.SaveReadingsToFile();
+          //  DS18B20.SaveReadingsToFile();
 
-            DS18B20.SerializeReadings();
+        //    DS18B20.SerializeReadings();
             DS18B20.GenerateMultipleReadings(3);
-            DS18B20.SaveReadingsToFile();
+          //  DS18B20.SaveReadingsToFile();
             Console.WriteLine(DS18B20.ToString());
 
             DS18B20.ClearAll();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -159,22 +160,58 @@ namespace Lab1._1
 
         public void SerializeReadings()
         {
-            String timestamp = string.Format("{0:yyyy_MM_dd_HH_mm_ss}", DateTime.Now);
+            String timestamp = string.Format("{0:yyyyMMdd_HHmmss}_PRG_DATA", DateTime.Now);
             SerializationClass.Serialize($"{timestamp}.txt", sensorValues);
         }
 
         public void DeserializeReadings()
         {
-            string[] fileNames = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
-            foreach (string filename in fileNames)
+            if(SelectLastFile(true))
             {
-                Console.WriteLine(Path.GetFileNameWithoutExtension(filename));
+                Console.WriteLine("Files exists! (_PRG_DATA)");
+            }
+            else
+            {
+                Console.WriteLine("Files doesn't exists! (_PRG_DATA)");
             }
             var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt");
             foreach(double? temp in a)
             {
                 sensorValues.Add(temp);
             }
+        }
+
+        bool SelectLastFile(bool deleteFilesAfterDeserialize)
+        {
+            string[] fileNames = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
+            CultureInfo provider = CultureInfo.InvariantCulture;
+            provider = new CultureInfo("pl-PL");
+            int numberOfFiles = 0;
+
+            foreach (string filename in fileNames)
+            {
+                string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filename);
+                string[] splitFilename = fileNameWithoutExtension.Split("_PRG_DATA");
+
+                if(splitFilename.Length > 0)
+                {
+                    try
+                    {
+                        DateTime fileDate = DateTime.ParseExact(splitFilename[0], "yyyyMMdd_HHmmss", provider);
+                        Console.WriteLine(fileDate);
+                        numberOfFiles++;
+                    }
+                    catch(FormatException /*e*/)
+                    {
+                        //Console.WriteLine(e);
+                        continue;
+                    }
+                }
+            }
+            Console.WriteLine($"Found {numberOfFiles} files.");
+            if (numberOfFiles > 0) return true;
+            else return false;
+           
         }
 
         public void ClearAll() //do testow 

@@ -166,14 +166,14 @@ namespace Lab1._1
 
         public void DeserializeReadings()
         {
-            if(SelectLastFile(true))
+          /*  if(SelectLastFile(true))
             {
                 Console.WriteLine("Files exists! (_PRG_DATA)");
             }
             else
             {
                 Console.WriteLine("Files doesn't exists! (_PRG_DATA)");
-            }
+            }*/
             var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt");
             foreach(double? temp in a)
             {

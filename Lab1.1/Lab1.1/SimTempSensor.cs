@@ -22,7 +22,6 @@ namespace Lab1._1
             max_range = 10.0;
             error_point = -5.0;
         }
-
         public SimTempSensor(double min, double max, double error)
         {
             if(min > max)
@@ -43,7 +42,6 @@ namespace Lab1._1
             }
             
         }
-
         public override string ToString()
         {
             int i = 0;
@@ -63,7 +61,6 @@ namespace Lab1._1
             }
             return s;
         }
-
         public double? GenerateSingleReadings()
         {
             // sensorValues.Clear(); nwm czy potrzebne w sumie
@@ -83,7 +80,6 @@ namespace Lab1._1
             }
             
         }
-
         public void GenerateMultipleReadings(int number)
         {
             var rand = new Random();
@@ -107,7 +103,6 @@ namespace Lab1._1
             }
 
         }
-
         public void ShowNReadings()
         {
             Console.Write("Insert a number of readings to show: ");
@@ -135,7 +130,6 @@ namespace Lab1._1
             }
 
         }
-
         public void SaveReadingsToFile()
         {
             using (StreamWriter sw = new StreamWriter("readings.txt")) //IDisposable
@@ -157,7 +151,6 @@ namespace Lab1._1
                 sw.Close();
             }
         }
-
         public void SerializeReadings()
         {
             String timestamp = string.Format("{0:yyyyMMdd_HHmmss}_PRG_DATA", DateTime.Now);
@@ -174,14 +167,15 @@ namespace Lab1._1
             {
                 Console.WriteLine("Files doesn't exists! (_PRG_DATA)");
             }*/
-            var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt");
+            var a = SerializationClass.Deserialize<List<double?>> ("readings_series.txt", false);
             foreach(double? temp in a)
             {
                 sensorValues.Add(temp);
             }
         }
 
-        bool SelectLastFile(bool deleteFilesAfterDeserialize)
+
+        public bool SelectLastFile()
         {
             string[] fileNames = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
             CultureInfo provider = CultureInfo.InvariantCulture;
@@ -201,7 +195,7 @@ namespace Lab1._1
                         Console.WriteLine(fileDate);
                         numberOfFiles++;
                     }
-                    catch(FormatException /*e*/)
+                    catch(FormatException /*e*/) // plik nie zgodny z formatem
                     {
                         //Console.WriteLine(e);
                         continue;
@@ -210,15 +204,18 @@ namespace Lab1._1
             }
             Console.WriteLine($"Found {numberOfFiles} files.");
             if (numberOfFiles > 0) return true;
-            else return false;
-           
+            else return false;   
         }
+
+        public void SelectAllFiles(bool deleteFilesAfterDeserialize)
+        {
+            SerializationClass.DeserializeFromMultipleFileSeries(ref sensorValues, deleteFilesAfterDeserialize);
+        }
+
 
         public void ClearAll() //do testow 
         {
             sensorValues.Clear();
         }
-
-
     }
 }

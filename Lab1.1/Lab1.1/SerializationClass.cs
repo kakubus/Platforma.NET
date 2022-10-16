@@ -11,7 +11,7 @@ namespace Lab1._1
     class SerializationClass
     {
         private static BinaryFormatter _bin = new BinaryFormatter();
-        static List<string> nameFiles;
+        static List<string> nameFiles = new List<string>();
         static string defaultFileExtension = "txt";
 
         public static void Serialize(string filePath, object objToSerial)
@@ -30,28 +30,42 @@ namespace Lab1._1
             }
         }
 
-        public static T Deserialize<T>(string filePath)
+        public static T Deserialize<T>(string filePath, bool deleteFilesAfterDeserialize)
         {
             T items;
-           
-            using (Stream stream = File.Open(filePath, FileMode.Open))
+            try
             {
-                try
+                using (Stream stream = File.Open(filePath, FileMode.Open))
                 {
-                    items = (T)_bin.Deserialize(stream);
+                    try
+                    {
+                        items = (T)_bin.Deserialize(stream);
+                        if (deleteFilesAfterDeserialize == true)
+                        {
+                            stream.Close();
+                            File.Delete(filePath);
+                            Console.WriteLine($"Deleting file: {filePath} after load.");
+                        }
+
+                    }
+                    catch (SerializationException e)
+                    {
+                        Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                        throw;
+                    }
+                    return items;
                 }
-                catch (SerializationException e)
-                {
-                    Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
-                    throw;
-                }
-                return items;
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Failed to open file: {filePath}: {e.Message} | not found");
+                throw;
             }
         }
 
- /*       public static void DeserializeFromMultipleFileSeries(bool deleteFilesAfterDeserialize)
+        public static void DeserializeFromMultipleFileSeries(ref List<double?> targetList, bool deleteFilesAfterDeserialize)
         {
-            T items;
+           // T items;
 
             string[] fileNames = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory);
             CultureInfo provider = CultureInfo.InvariantCulture;
@@ -68,11 +82,13 @@ namespace Lab1._1
                     try
                     {
                         DateTime fileDate = DateTime.ParseExact(splitFilename[0], "yyyyMMdd_HHmmss", provider);
-                        nameFiles.Add(fileNameWithoutExtension+"."+defaultFileExtension);
+                        string temp = fileNameWithoutExtension + "." + defaultFileExtension;
+                        Console.WriteLine($"Loading file: {temp}");
+                        nameFiles.Add(temp);
                         //Console.WriteLine($"{fileNameWithoutExtension}.{defaultFileExtension}\t->\t{fileDate}");
                         numberOfFiles++;
                     }
-                    catch (FormatException /*e*//*)
+                    catch (FormatException /*e*/)
                     {
                         //Console.WriteLine(e);
                         continue;
@@ -83,10 +99,29 @@ namespace Lab1._1
             
             if (numberOfFiles > 0)
             {
-                var a = var a = SerializationClass.Deserialize<List<double?>>(nameFiles);
+                int counter = nameFiles.Count - 1;
+                for (int i = 0; i < numberOfFiles; i++)
+                {
+                    Console.WriteLine($"Loading file: {nameFiles[counter]}");
+                    var a = Deserialize<List<double?>>(nameFiles[counter], deleteFilesAfterDeserialize);
+                    foreach (double? temp in a)
+                    {
+                        //Console.WriteLine($"{temp}");
+                        targetList.Add(temp);
+                        
+                    }
+                    if (deleteFilesAfterDeserialize == true) 
+                    {
+                       // Console.WriteLine($"Deleting file: {nameFiles[counter]} after load.");
+                        nameFiles.RemoveAt(counter);
+                        
+                    }
+                    counter--;
+                }
+
             }
 
-        }*/
+        }
     }
   
 

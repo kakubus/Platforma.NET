@@ -71,7 +71,7 @@ namespace Lab1._1
             CultureInfo provider = CultureInfo.InvariantCulture;
             provider = new CultureInfo("pl-PL");
             int numberOfFiles = 0;
-            Console.WriteLine("File name\t|\tCreation datetime");
+
             foreach (string filename in fileNames)
             {
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filename);
@@ -114,7 +114,6 @@ namespace Lab1._1
                     {
                        // Console.WriteLine($"Deleting file: {nameFiles[counter]} after load.");
                         nameFiles.RemoveAt(counter);
-                        
                     }
                     counter--;
                 }
@@ -122,8 +121,5 @@ namespace Lab1._1
             }
 
         }
-    }
-  
-
-    
+    } 
 }

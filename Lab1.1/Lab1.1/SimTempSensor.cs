@@ -8,9 +8,9 @@ using System.Text;
 //test komentarza
 namespace Lab1._1
 {
-    class SimTempSensor
+    class SimTempSensor : ISensor
     {
-        List<double?> sensorValues;
+        public List<double?> sensorValues;
         private double min_range;
         private double max_range;
         private double error_point;

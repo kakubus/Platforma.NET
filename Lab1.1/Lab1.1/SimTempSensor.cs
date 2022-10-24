@@ -11,9 +11,9 @@ namespace Lab1._1
     class SimTempSensor : ISensor
     {
         public List<double?> sensorValues;
-        private double min_range;
-        private double max_range;
-        private double error_point;
+        readonly private double  min_range;
+        readonly private double max_range;
+        readonly private double error_point;
 
         public SimTempSensor()
         {
@@ -86,7 +86,7 @@ namespace Lab1._1
 
             if (number <= 0) return; //bledna ilosc
 
-            double temp = 0;
+            double temp;
 
             for (int i = 0; i < number; i++)
             {

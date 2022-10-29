@@ -19,6 +19,8 @@ namespace Dodatkowe_1_Zamowienia
             Console.WriteLine(z);
             z.usunPozycje(2);
             Console.WriteLine(z);
+            z.edytujPozycje(1);
+            Console.WriteLine(z);
         }
     }
 }

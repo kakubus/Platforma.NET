@@ -39,6 +39,35 @@ namespace Dodatkowe_1_Zamowienia
 
         }
 
+        public void edytujPozycje(int indeks)
+        {
+            if (indeks >= 0 && indeks < _maksRozmiar && indeks < _ileDodanych)
+            {
+                string nowaNazwa = "";
+                int nowaIleSztuk;
+                double nowaCena;
+                Console.WriteLine($"Edycja pozycji: {_pozycje[indeks]}");
+
+                Console.Write("Podaj nazwe: ");
+                nowaNazwa = Console.ReadLine();
+
+                Console.Write("Podaj ilosc sztuk: ");
+                nowaIleSztuk = int.Parse(Console.ReadLine());
+
+                Console.Write("Podaj cene: ");
+                nowaCena = double.Parse(Console.ReadLine()); 
+                if (nowaCena >= 0 && nowaIleSztuk >= 0)
+                {
+                    _pozycje[indeks] = new Pozycja(nowaNazwa, nowaIleSztuk, nowaCena);
+                }
+                else
+                {
+                    Console.WriteLine("Wrong values to edit. Aborting..");
+                }
+
+            }
+        }
+
         public void usunPozycje(int indeks)
         {
             if (indeks >= 0 && indeks < _maksRozmiar && indeks <_ileDodanych)

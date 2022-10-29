@@ -6,7 +6,15 @@ namespace Dodatkowe_1_Zamowienia
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Pozycja p1 = new Pozycja("Chleb", 1, 3.5);
+            Pozycja p2 = new Pozycja("Cukier", 3, 4);
+            Console.WriteLine(p1);
+            Console.WriteLine(p2);
+
+            Zamowienie z = new Zamowienie(20);
+            z.dodajPozycje(p1);
+            z.dodajPozycje(p2);
+            Console.WriteLine(z);
         }
     }
 }

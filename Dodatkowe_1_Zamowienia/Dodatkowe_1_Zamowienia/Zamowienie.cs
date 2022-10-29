@@ -10,12 +10,14 @@ namespace Dodatkowe_1_Zamowienia
         int _ileDodanych;
         int _maksRozmiar;
 
-        Zamowienie()
+        public Zamowienie()
         {
             _maksRozmiar = 10;
+            _ileDodanych = 0;
+            _pozycje = new Pozycja[_maksRozmiar];
         }
 
-        Zamowienie(int maksPozycji)
+        public Zamowienie(int maksPozycji)
         {
             if(maksPozycji > 0)
             {
@@ -26,21 +28,38 @@ namespace Dodatkowe_1_Zamowienia
                 _maksRozmiar = 10;
                 Console.WriteLine("Error in max parameter. Set to default (10)");
             }
+            _pozycje = new Pozycja[_maksRozmiar];
+            _ileDodanych = 0;
         }
 
         public void dodajPozycje(Pozycja p)
         {
+            _pozycje[_ileDodanych]=p;
+            _ileDodanych++;
 
         }
 
         public double obliczWartosc()
         {
-            return 0;
+            double sum = 0;
+
+            for(int i = 0; i < _ileDodanych; i++)
+            {
+                sum += _pozycje[i].obliczWartosc();
+            }
+
+            return sum;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            string temp = "Zamowienie:\n";
+            for (int i = 0; i < _ileDodanych; i++)
+            {
+               temp+=_pozycje[i].ToString()+"\n";
+            }
+            temp+=($"\nRazem: {obliczWartosc().ToString():C} PLN" );
+            return temp;
         }
     }
 }

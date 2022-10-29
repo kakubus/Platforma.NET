@@ -10,19 +10,27 @@ namespace Dodatkowe_1_Zamowienia
         int _ileSztuk;
         double _cena;
 
-        Pozycja(string nazwaTowaru, int ileSztuk, double cena)
+        public Pozycja(string nazwaTowaru, int ileSztuk, double cena)
         {
+            _nazwaTowaru = nazwaTowaru;
+            if (ileSztuk >= 0) _ileSztuk = ileSztuk;
+            else _ileSztuk = 0;
 
+            if (cena >= 0) _cena = cena;
+            else _cena = 0;
         }
 
         public double obliczWartosc()
         {
-            return 0;
+            return _ileSztuk*_cena;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            string temp = ($"{_nazwaTowaru}\t\t{ _cena.ToString():4c} PLN\t{_ileSztuk.ToString():4} szt.\t{obliczWartosc().ToString():f10c} PLN");
+               
+
+            return temp;
         }
 
     }

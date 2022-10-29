@@ -39,6 +39,19 @@ namespace Dodatkowe_1_Zamowienia
 
         }
 
+        public void usunPozycje(int indeks)
+        {
+            if (indeks >= 0 && indeks < _maksRozmiar && indeks <_ileDodanych)
+            {
+                for(int i = indeks; i<_maksRozmiar-1; i++)
+                {
+                    if (i == indeks) _ileDodanych--;
+                    _pozycje[i] = _pozycje[i + 1];     
+                }
+            }
+            else Console.WriteLine("Wrong index to delete!\n");
+        }
+
         public double obliczWartosc()
         {
             double sum = 0;

@@ -27,9 +27,7 @@ namespace Dodatkowe_1_Zamowienia
 
         public override string ToString()
         {
-            string temp = ($"{_nazwaTowaru}\t\t{ _cena.ToString():4c} PLN\t{_ileSztuk.ToString():4} szt.\t{obliczWartosc().ToString():f10c} PLN");
-               
-
+            string temp = ($"{_nazwaTowaru}\t\t{ _cena.ToString():4C} PLN\t{_ileSztuk.ToString():4} szt.\t{obliczWartosc().ToString():f10c} PLN");
             return temp;
         }
 

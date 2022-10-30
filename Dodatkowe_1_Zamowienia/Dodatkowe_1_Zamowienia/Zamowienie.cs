@@ -114,12 +114,15 @@ namespace Dodatkowe_1_Zamowienia
         public double obliczWartosc()
         {
             double sum = 0;
-
+            double rabat = 0;
+            double cenaPoRabacie = 0;
             for(int i = 0; i < _ileDodanych; i++)
             {
-                sum += _pozycje[i].obliczWartosc();
+                cenaPoRabacie = _pozycje[i].obliczWartoscZRabatem();
+                rabat = _pozycje[i].obliczWartosc() - cenaPoRabacie;
+                sum += cenaPoRabacie;
             }
-
+            Console.WriteLine($"Naliczono rabat o lacznej wysokosci {rabat.ToString()}");
             return sum;
         }
 

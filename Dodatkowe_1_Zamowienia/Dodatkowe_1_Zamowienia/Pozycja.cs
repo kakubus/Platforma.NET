@@ -27,7 +27,23 @@ namespace Dodatkowe_1_Zamowienia
 
         public double obliczWartoscZRabatem()
         {
-            return 0;
+            if(this._ileSztuk>=5 && this._ileSztuk <= 10)
+            {
+                return (_ileSztuk * _cena)*0.05; //5% rabatu
+            }
+            else if (this._ileSztuk > 10 && this._ileSztuk <= 20)
+            {
+                return (_ileSztuk * _cena) * 0.1; //10% rabatu
+            }
+            else if (this._ileSztuk > 20)
+            {
+                return (_ileSztuk * _cena) * 0.15; //15% rabatu
+            }
+            else
+            {
+                return _ileSztuk * _cena;
+            }
+
         }
 
         public override string ToString()

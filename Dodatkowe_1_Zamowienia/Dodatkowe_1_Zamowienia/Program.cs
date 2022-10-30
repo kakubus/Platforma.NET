@@ -9,17 +9,19 @@ namespace Dodatkowe_1_Zamowienia
             Pozycja p1 = new Pozycja("Chleb", 1, 3.5);
             Pozycja p2 = new Pozycja("Cukier", 3, 4);
             Pozycja p3 = new Pozycja("Rzepak", 22, 1.30);
-            Console.WriteLine(p1);
-            Console.WriteLine(p2);
+            Pozycja p4 = new Pozycja("Chleb", 22, 3.50);
+           // Console.WriteLine(p1);
+           // Console.WriteLine(p2);
 
             Zamowienie z = new Zamowienie(20);
             z.dodajPozycje(p1);
             z.dodajPozycje(p2);
             z.dodajPozycje(p3);
-            Console.WriteLine(z);
-            z.usunPozycje(2);
-            Console.WriteLine(z);
-            z.edytujPozycje(1);
+            z.dodajPozycje(p4);
+            //Console.WriteLine(z);
+            //z.usunPozycje(2);
+           // Console.WriteLine(z);
+          //  z.edytujPozycje(1);
             Console.WriteLine(z);
         }
     }

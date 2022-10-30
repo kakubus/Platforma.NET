@@ -34,9 +34,31 @@ namespace Dodatkowe_1_Zamowienia
 
         public void dodajPozycje(Pozycja p)
         {
-            _pozycje[_ileDodanych]=p;
-            _ileDodanych++;
+            bool isExist = false;
+            foreach (Pozycja i_pozycja in _pozycje)
+            {
+                int indeks = 0;
+                if (i_pozycja == null) break;
+                if(p._nazwaTowaru == i_pozycja._nazwaTowaru)
+                {
+                    isExist = true;
+                    Console.WriteLine($"This product (Named as: {p._nazwaTowaru}) already exsits. Modifying amount. Price is also modified.");
+                    _pozycje[indeks] += p;
+                    indeks++;
+                }
+                else
+                {
+                    indeks++;
+                    continue;
+                }
 
+            }
+            if (!isExist)
+            {
+                _pozycje[_ileDodanych] = p;
+                _ileDodanych++;
+            }
+        
         }
 
         public void edytujPozycje(int indeks)
@@ -44,8 +66,8 @@ namespace Dodatkowe_1_Zamowienia
             if (indeks >= 0 && indeks < _maksRozmiar && indeks < _ileDodanych)
             {
                 string nowaNazwa = "";
-                int nowaIleSztuk;
-                double nowaCena;
+                int nowaIleSztuk = 0;
+                double nowaCena = 0;
                 Console.WriteLine($"Edycja pozycji: {_pozycje[indeks]}");
 
                 Console.Write("Podaj nazwe: ");
@@ -55,7 +77,15 @@ namespace Dodatkowe_1_Zamowienia
                 nowaIleSztuk = int.Parse(Console.ReadLine());
 
                 Console.Write("Podaj cene: ");
-                nowaCena = double.Parse(Console.ReadLine()); 
+
+                try
+                {
+                    nowaCena = double.Parse(Console.ReadLine()); 
+                }
+                catch(System.FormatException e){
+                    Console.WriteLine(e);
+                }
+
                 if (nowaCena >= 0 && nowaIleSztuk >= 0)
                 {
                     _pozycje[indeks] = new Pozycja(nowaNazwa, nowaIleSztuk, nowaCena);

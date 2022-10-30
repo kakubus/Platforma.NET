@@ -6,7 +6,7 @@ namespace Dodatkowe_1_Zamowienia
 {
     class Pozycja
     {
-        string _nazwaTowaru;
+        public string _nazwaTowaru;
         int _ileSztuk;
         double _cena;
 
@@ -25,11 +25,20 @@ namespace Dodatkowe_1_Zamowienia
             return _ileSztuk*_cena;
         }
 
+        public double obliczWartoscZRabatem()
+        {
+            return 0;
+        }
+
         public override string ToString()
         {
             string temp = ($"{_nazwaTowaru}\t\t{ _cena.ToString():4C} PLN\t{_ileSztuk.ToString():4} szt.\t{obliczWartosc().ToString():f10c} PLN");
             return temp;
         }
 
+        public static Pozycja operator +(Pozycja a, Pozycja b)
+        {
+           return new Pozycja(a._nazwaTowaru, a._ileSztuk + b._ileSztuk, b._cena);
+        }
     }
 }

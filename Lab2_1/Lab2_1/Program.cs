@@ -6,7 +6,10 @@ namespace Lab2_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Bolid TestowyKierowca = new Bolid();
+            TestowyKierowca.PitStop();
+
+
         }
     }
 }

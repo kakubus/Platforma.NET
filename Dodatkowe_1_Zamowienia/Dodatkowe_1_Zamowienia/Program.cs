@@ -20,6 +20,7 @@ namespace Dodatkowe_1_Zamowienia
             z.dodajPozycje(p2);
             z.dodajPozycje(p3);
             z.dodajPozycje(p4);
+            //
         //    String timestamp = string.Format("{0:yyyyMMdd_HHmmss}_PRG_DATA", DateTime.Now);
             // SerializationClass.Serialize("serializacja.txt", z.ToString());
 

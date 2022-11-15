@@ -9,6 +9,7 @@ namespace Lab2_1
     {
         public void PitStop()
         {
+            
             ZnakStop();
             WymianaKola(3);
             WymianaKola(1);

@@ -24,5 +24,24 @@ namespace Lab3
         {
             InitializeComponent();
         }
+        private void menuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Author: Mieczysław Kocimiętka", "About");
+            
+        }
+
+        private void menuExit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want to close application?", "Exit", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Close();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+
+        }
     }
 }

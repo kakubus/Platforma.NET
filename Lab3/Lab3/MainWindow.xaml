@@ -35,17 +35,16 @@
         </Menu>
 
 
-        <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Height="31" Width="140"/>
-        <ProgressBar HorizontalAlignment="Center" Height="31" Grid.Row="3" VerticalAlignment="Center" Width="430"/>
+        <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Height="31" Width="140" Click="buttonStart_Click"/>
+        <ProgressBar HorizontalAlignment="Center" Height="31" Grid.Row="3" VerticalAlignment="Center" Width="430" x:Name="ProgressBar"/>
 
         <TextBox x:Name="NumberOfElements" HorizontalAlignment="Left" Margin="130,8,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="100
                  "/>
         <Label Content="Number of elements:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="120" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="565" Grid.ColumnSpan="2" Height="206"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="565" Grid.ColumnSpan="2" Height="206" x:Name="Results"/>
         <TextBox x:Name="RangeFrom" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="304,8,46,0"/>
         <Label Content="Range from:" HorizontalAlignment="Left" Margin="230,0,0,0" VerticalAlignment="Center" Width="74" Grid.Row="1"/>
         <Label Content="Range to:" HorizontalAlignment="Left" Margin="404,4,0,0" VerticalAlignment="Top" Width="61" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="RangeFrom_Copy" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="100
-                 " Margin="0,8,0,0" Grid.Column="1"/>
+        <TextBox x:Name="RangeTo" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Margin="0,8,0,0" Grid.Column="1"/>
     </Grid>
 </Window>

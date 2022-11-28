@@ -24,6 +24,17 @@ namespace Lab3
         {
             InitializeComponent();
         }
+
+
+        private void buttonStart_Click(object sender, RoutedEventArgs e)
+        {
+            NumberGenerator numbers = new NumberGenerator();
+            numbers.generate(1, 10, 10);
+            Results.Text = numbers.ToString();
+            
+        }
+
+
         private void menuAbout_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Author: Mieczysław Kocimiętka", "About");

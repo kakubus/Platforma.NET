@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Lab3
 {
@@ -20,15 +22,17 @@ namespace Lab3
     /// </summary>
     public partial class MainWindow : Window
     {
+        NumberGenerator numbers;
         public MainWindow()
         {
             InitializeComponent();
+            numbers = new NumberGenerator();
         }
 
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            NumberGenerator numbers = new NumberGenerator();
+            
             numbers.generate(1, 10, 10);
             Results.Text = numbers.ToString();
             
@@ -39,6 +43,22 @@ namespace Lab3
         {
             MessageBox.Show("Author: Mieczysław Kocimiętka", "About");
             
+        }
+
+        private void menuSave_Click(object sender, RoutedEventArgs e)
+        {/*
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if(openFileDialog.ShowDialog() == true)
+            {
+                Results.Text = File.ReadAllText(openFileDialog.FileName);
+                
+            }*/
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, numbers.ToString());
+
+            }
         }
 
         private void menuExit_Click(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="New"/>
                 <MenuItem Header="Load"/>
-                <MenuItem Header="Save"/>
+                <MenuItem Header="Save" Click="menuSave_Click"/>
                 <MenuItem Header="Exit" Click="menuExit_Click"/>
             </MenuItem>
             <MenuItem Header="Help">

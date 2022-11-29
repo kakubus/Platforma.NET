@@ -24,7 +24,7 @@
         </StatusBar>
 
         <Menu Grid.ColumnSpan="2" FontSize="12" Padding="0,0,0,0">
-            <MenuItem Header="File">
+            <MenuItem Header="File" x:Name="menuFile">
                 <MenuItem Header="New" Click="menuNew_Click"/>
                 <MenuItem Header="Load" Click="menuLoad_Click"/>
                 <MenuItem Header="Save" Click="menuSave_Click"/>

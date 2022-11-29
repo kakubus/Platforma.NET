@@ -19,12 +19,14 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <StatusBar Grid.Row="4" Grid.ColumnSpan="2" x:Name="StartButton"/>
+        <StatusBar Grid.Row="4" Grid.ColumnSpan="2"   Margin="0,0,0,0" Padding="0,0,0,0">
+            <Label Content="" Width="244" x:Name="StatusBarLabel" Padding="0,0,0,0" Height="18" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="11"/>
+        </StatusBar>
 
-        <Menu Grid.ColumnSpan="2">
+        <Menu Grid.ColumnSpan="2" FontSize="12" Padding="0,0,0,0">
             <MenuItem Header="File">
-                <MenuItem Header="New"/>
-                <MenuItem Header="Load"/>
+                <MenuItem Header="New" Click="menuNew_Click"/>
+                <MenuItem Header="Load" Click="menuLoad_Click"/>
                 <MenuItem Header="Save" Click="menuSave_Click"/>
                 <MenuItem Header="Exit" Click="menuExit_Click"/>
             </MenuItem>
@@ -35,13 +37,13 @@
         </Menu>
 
 
-        <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Height="31" Width="140" Click="buttonStart_Click"/>
-        <ProgressBar HorizontalAlignment="Center" Height="31" Grid.Row="3" VerticalAlignment="Center" Width="430" x:Name="ProgressBar"/>
+        <Button Grid.Column="1" Content="Start" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Height="31" Width="140" Click="buttonStart_Click" x:Name="StartButton" />
+        <ProgressBar HorizontalAlignment="Center" Height="31" Grid.Row="3" VerticalAlignment="Center" Width="430" x:Name="ProgressBar" Minimum="0" Maximum="100"/>
 
         <TextBox x:Name="NumberOfElements" HorizontalAlignment="Left" Margin="130,8,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="100
                  "/>
         <Label Content="Number of elements:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="120" Grid.Row="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="565" Grid.ColumnSpan="2" Height="206" x:Name="Results"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="565" Grid.ColumnSpan="2" Height="206" x:Name="Results" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="RangeFrom" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="304,8,46,0"/>
         <Label Content="Range from:" HorizontalAlignment="Left" Margin="230,0,0,0" VerticalAlignment="Center" Width="74" Grid.Row="1"/>
         <Label Content="Range to:" HorizontalAlignment="Left" Margin="404,4,0,0" VerticalAlignment="Top" Width="61" Grid.Row="1" Grid.ColumnSpan="2"/>

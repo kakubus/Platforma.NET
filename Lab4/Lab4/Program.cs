@@ -26,17 +26,17 @@ namespace ConsoleApp1
    
             //Dane do zadan
 
-            int[] n1 = { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14};                       // Zadanie 1
-            int[] n2 = { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14};                       // Zadanie 2
-            var arr1 = new[] { 3, -1, -3, 6, 9, 2, -7, 0, 8, 14, 13, 24, 12, 6, 5 };            // Zadanie 3
-            var arr2 = new[] { 3, 9, 2, 8, 6, 5 };                                              // Zadanie 4
-            int[] arr3 = new int[] { 5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2 };    // Zadanie 5
-            var str = "abeddwkkecjjeksoiekcllkenndkwel";                                        // Zadanie 6
-            string[] months = { "January", "February", "March", "April", "May",                 // Zadanie 7
+            int[] n1 = { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14};                       // Dane do Zadania 1
+            int[] n2 = { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14};                       // Dane do Zadania 2
+            var arr1 = new[] { 3, -1, -3, 6, 9, 2, -7, 0, 8, 14, 13, 24, 12, 6, 5 };            // Dane do Zadania 3
+            var arr2 = new[] { 3, 9, 2, 8, 6, 5 };                                              // Dane do Zadania 4
+            int[] arr3 = new int[] { 5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2 };    // Dane do Zadania 5
+            var str = "abeddwkkecjjeksoiekcllkenndkwel";                                        // Dane do Zadania 6
+            string[] months = { "January", "February", "March", "April", "May",                 // Dane do Zadania 7
                 "June", "July", "August", "September", "October", "November", "December" 
             };
-            int[] nums = new int[] { 5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2 };          // Zadanie 8
-            string[] cities ={"ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH",                  // Zadanie 9
+            int[] nums = new int[] { 5, 1, 9, 2, 3, 7, 4, 5, 6, 8, 7, 6, 3, 4, 5, 2 };          // Dane do Zadania 8
+            string[] cities ={"ROME","LONDON","NAIROBI","CALIFORNIA","ZURICH",                  // Dane do Zadania 9
                 "NEW DELHI","AMSTERDAM","ABU DHABI", "PARIS"
             };
 
@@ -125,10 +125,68 @@ namespace ConsoleApp1
             // Zadanie 10
 
             Console.Write("\nZadanie 10 - Wymaga interakcji uzytkownika.\n");
+            Console.Write("Podaj kolejno liste liczb calkowitych (wpisz 'q' aby zakonczyc):\n");
+            List<int> numbers = new List<int>();
+            while (true)
+            {
+                string listInput = Console.ReadLine();
+
+                if (listInput == "q") break;
+                int number = int.Parse(listInput);
+                numbers.Add(number);
+            }
+            Console.Write("\nPodaj prog wartosci od jakiej wyswietlic dane: ");
+            int value = int.Parse(Console.ReadLine());
+            var searchValues = from number in numbers.FindAll(n => n > value) select number;
+            if (!searchValues.Any())
+            {
+                Console.WriteLine($"Nie znaleziono takich wartosci wiekszych od {value}!\n");
+            }
+            else
+            {
+                Console.Write($"\nZnaleziono nastepujace wartosci wieksze od {value}:");
+                foreach (var n in searchValues)
+                {
+                    Console.Write(" " + n);
+                }
+            }
+
+            // Zadanie 11
+
+            Console.Write("\n\nZadanie 11 - Wymaga interakcji uzytkownika. Dane z poprzedniego programu\n");
+            Console.Write("Podaj ilosc ostatnich liczb do wyswietlenia: ");
+            numbers.Reverse(); // Aby podawać "faktycznie ostatnie" elementy listy. Bo lista przechowuje jako ostatnie elementy, te które zostały podane najwcześniej.
+            int lastValues = int.Parse(Console.ReadLine());
+            var lastNumbers = numbers.Take(lastValues);
+            Console.Write($"\nNastepujace {lastValues} ostatnie liczby: ");
+            foreach(var n in lastNumbers)
+            {
+                Console.Write(" " + n.ToString());
+            }
+
+            // Zadanie 12
+
+            Console.Write("\n\nZadanie 12 - Wymaga interakcji uzytkownika. Dane z zadania 10 \n");
+            Console.Write("Podaj ilosc n najwiekszych liczb do wyswietlenia: ");
+            numbers.Reverse(); // Przywracam do stanu sprzed 11 zadania liste numbers.
+            int nNumbers = int.Parse(Console.ReadLine());
+
+            numbers.Sort(); // Posortowanie od najmniejszej -> najwiekszej
+            numbers.Reverse(); // Odwrocenie listy, aby najwieksze byly na poczatku
 
 
+            var maxNValues = numbers.Take(nNumbers); // Pobiera n najwiekszych elementow
+            Console.Write($"\nNastepujace {nNumbers} najwieksze liczby: ");
+            foreach (var n in maxNValues)
+            {
+                Console.Write(" " + n.ToString());
+            }
 
+            // Zadanie 13
 
+            Console.Write("\n\nZadanie 13 - Wymaga interakcji uzytkownika. \n");
+            string inputString = "Wyraz PISANY wielkimi LITERAMI majacy PaRe Wyrazow i NIC NIEznaczacych stwierdzen";
+            string [] words = inputString.Split(' ');
 
 
 

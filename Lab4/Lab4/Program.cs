@@ -184,11 +184,20 @@ namespace ConsoleApp1
 
             // Zadanie 13
 
-            Console.Write("\n\nZadanie 13 - Wymaga interakcji uzytkownika. \n");
+            Console.Write("\n\nZadanie 13\n");
             string inputString = "Wyraz PISANY wielkimi LITERAMI majacy PaRe Wyrazow i NIC NIEznaczacych stwierdzen";
             string [] words = inputString.Split(' ');
+            Console.WriteLine("Zdanie wejsciowe: "+inputString);
+            words = words.Where(w => ((w.Length).Equals(w.ToUpper().Length))).ToArray();
+            Console.Write($"\nWyrazy napisane wielkimi literami: ");
+            foreach (var n in words)
+            {
+                Console.Write(" " + n);
+            }
 
+            // Zadanie 14
 
+            Console.Write("\n\nZadanie 14 - Wymaga interakcji uzytkownika. \n");
 
         }
     }
